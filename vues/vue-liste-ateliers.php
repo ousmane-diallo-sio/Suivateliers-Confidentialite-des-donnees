@@ -5,7 +5,7 @@
 <html lang="fr">
 
 	<head>
-		<title>Liste ateliers</title>
+		<title>Liste ateliers <?php if($_SESSION['admin']){ echo "(admin)"; } ?> </title>
 		
 		<link rel="stylesheet" href="../src/styles.css"/>
 		
@@ -18,9 +18,10 @@
 		<?php include '../composants/bar-de-navigation.php'; ?>
 		
 		<div style="display: flex; flex-direction: column; text-align: center; align-items: center">
-			<h2>Bienvenue <?php echo $_SESSION['prenom'] ?> </h2>
+			
+			</h2>
 
-				<p>Liste des ateliers disponibles :</p>
+				<h4>Liste des ateliers disponibles :</h4>
 
 				<table>
 
@@ -31,12 +32,12 @@
 						<td>Durée</td>
 						<td>Nombre de places</td>
 						<td>Thème</td>
-						<td>Participants</td>
+						<?php if($_SESSION['admin']){echo "<td>Voir participants</td>"; } ?>
 					</thead>
 
 					<tbody>
 						<?php
-							foreach($_SESSION['listeAteliers'] as $atelier){
+							foreach($_SESSION[ 'listeAteliers' ] as $atelier){
 								
 								echo "<tr>";
 									echo "<td>" .$atelier['numero'] ."</td>";
@@ -45,7 +46,10 @@
 									echo "<td>" .$atelier['duree'] ."</td>"; 
 									echo "<td>" .$atelier['nb_places'] ."</td>"; 
 									echo "<td>" .$atelier['theme'] ."</td>";
-									echo "<td> <a href='vue-liste-stagiaires.php'>Voir participants</a> </td>"; 
+									if($_SESSION[ 'admin' ]){
+										$numAtelier = $atelier[ 'numero' ];
+										echo "<td> <a href='vue-liste-stagiaires.php?numAtelier=$numAtelier' target=_blank norefferer noopener>Voir participants</a> </td>"; 
+									}
 								echo "</tr>";
 
 							}

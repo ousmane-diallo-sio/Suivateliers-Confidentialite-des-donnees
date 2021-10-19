@@ -20,7 +20,7 @@
 		
 		<form action="controleurs/ctrl-connecter.php" method="POST" style="display:flex; flex-direction:column;" >
 			<label>Identifiant</label>
-			<input name="email" type="email" value="<?php echo $identifiant[1]; ?>" />
+			<input name="email" value="<?php echo $identifiant[1]; ?>" />
 			<label>Mot de passe</label>
 			<input name="mdp" type="password" /> </br>
 			<button type="submit">Se connecter</button>

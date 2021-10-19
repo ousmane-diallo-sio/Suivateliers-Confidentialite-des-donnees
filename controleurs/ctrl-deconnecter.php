@@ -2,11 +2,16 @@
 
     session_start();
 
-	$login = $_SESSION[ 'email' ] ;
+	if($_SESSION[ 'admin' ]){
+		$login = $_SESSION[ 'email' ] ;
+	}
+	else{
+		$login = $_SESSION[ 'login' ];
+	}
 	
 	session_unset() ;
 	session_destroy() ;
 	
-	header( 'Location: ../vues/vue-connexion.php?login=' .$login ) ;
+	header( "Location: ../index.php?login=$login" ) ;
 
 ?>
